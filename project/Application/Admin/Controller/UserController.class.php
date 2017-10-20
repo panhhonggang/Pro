@@ -6,8 +6,4 @@ class UserController extends Controller {
         $this->display('index');
     }
 
-    public function login()
-    {
-        $this->display('login');
-    }
 }

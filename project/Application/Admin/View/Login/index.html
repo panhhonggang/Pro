@@ -30,13 +30,20 @@
             </div>
             <h3>欢迎使用 点球系统</h3>
 
-            <form class="m-t" role="form" action="{{:U('Index/index')}}">
+            <form class="m-t" role="form" action="{{:U('action')}}" method="post">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="用户名" required="">
+                    <input name="user" type="text" class="form-control" placeholder="用户名或手机号码" required="">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="密码" required="">
+                    <input name="password" type="password" class="form-control" placeholder="密码" required="">
                 </div>
+                <div class="form-group">
+                    <input name="code" type="text" class="form-control form-wide" placeholder="请输入验证码" required="" >
+                </div>
+                <div class="form-group">
+                    <img src="__URL__/verify" alt="点击刷新" id="refresh">
+                </div>
+
                 <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
 
 
@@ -50,6 +57,15 @@
     <!-- 全局js -->
     <script src="__PUBLIC__/Admin/js/jquery.min.js?v=2.1.4"></script>
     <script src="__PUBLIC__/Admin/js/bootstrap.min.js?v=3.3.6"></script>
+    <script>
+        $("#refresh").click(function(){
+            var verifyUrl = "__URL__/verify";
+            var time = new Date().getTime();
+            $('#refresh').attr({
+                "src": verifyUrl + "/" + time
+            });
+        });
+    </script>
 
 </body>
 

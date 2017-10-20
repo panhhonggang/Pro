@@ -17,10 +17,10 @@ class CommonController extends Controller
     public function _initialize()
     {	
     	// 登录检测
-    	if(empty($_SESSION['adminuser'])) $this->redirect('Login/login');
+    	if(empty($_SESSION['adminuser'])) $this->redirect('Login/index');
 
     	// 权限检测
-    	$name = $_SESSION['adminuser']['name'];
+    	$name = $_SESSION['adminuser']['user'];
     	$auth = $this->auth($name);
     	if(!$auth) $this->redirect('Index/index');
 
