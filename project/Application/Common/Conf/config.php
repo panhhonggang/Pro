@@ -16,4 +16,14 @@ return array(
     'DB_RW_SEPARATE'        =>  false,       // 数据库读写是否分离 主从式有效
     'DB_MASTER_NUM'         =>  1, // 读写分离后 主服务器数量
     'DB_SLAVE_NO'           =>  '', // 指定从服务器序号
+
+    /* 权限配置 */
+    'AUTH_CONFIG' => array(
+        'AUTH_ON' => true, //认证开关
+        'AUTH_TYPE' => 1, // 认证方式，1为时时认证；2为登录认证。
+        'AUTH_GROUP' => 'pub_auth_group', //用户组数据表名
+        'AUTH_GROUP_ACCESS' => 'pub_auth_group_access', //用户组明细表
+        'AUTH_RULE' => 'pub_auth_rule', //权限规则表
+        'AUTH_USER' => 'pub_vendors'//用户信息表
+    )
 );
