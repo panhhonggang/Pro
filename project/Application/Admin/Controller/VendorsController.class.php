@@ -21,7 +21,7 @@ class VendorsController extends CommonController
 
         $user = D('vendors');
         $total = $user->where($map)->count();
-        $page  = new \Think\Page($total,1);
+        $page  = new \Think\Page($total,8);
         $pageButton =$page->show();
 
         $userlist = $user->where($map)->limit($page->firstRow.','.$page->listRows)->getAll();
@@ -38,14 +38,16 @@ class VendorsController extends CommonController
     public function add()
     {
         if(IS_POST){
+
             $user = D('vendors');
             $info = $user->create();
+            // dump($info);die;
 
             if($info){
 
                 $res = $user->add();
                 if ($res) {
-                    $this->success('添加经销商成功啦！！！',U('index'));
+                    $this->success('添加经销商成功啦！！！',U('Vendors/index'));
                 } else {
                     $this->error('添加经销商失败啦！');
                 }
@@ -101,12 +103,14 @@ class VendorsController extends CommonController
         if ($userinfo[0]['leavel'] == 0 ) {
             $this->error('不能删除超级管理员！');
         }else{
+            // 查
             $res = D('vendors')->delete($id);
             if($res){
                 $this->success('删除成功',U('index'));
             }else{
                 $this->error('删除失败');
             }
+
         }
     }
 }

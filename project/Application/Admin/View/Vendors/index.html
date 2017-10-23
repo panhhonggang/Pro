@@ -58,11 +58,11 @@
                             <td>{{$vo.address}}</td>
                             <td>{{$vo.leavel}}</td>
                             <td>{{$vo.pid}}</td>
-                            <td>{{$vo.addtime}}</td>
+                            <td>{{$vo.addtime|date='Y-m-d H:i:s',###}}</td>
                             <td>
                                 <if condition="$Think.session.adminuser.leavel eq 0">
                                     <a href="">分配角色</a>
-                                    <a href="__URL__/edit/id/{$vo.id}">修改信息</a>
+                                    <!-- <a href="__URL__/edit/id/{$vo.id}">修改信息</a> -->
                                     <a href="__URL__/del/id/{$vo.id}">删除</a>
                                 <else />
                                     <span>对不起，您无权操作！！！</span>
