@@ -9,6 +9,9 @@ class RuleController extends Controller
     // 权限列表
     public function auth_rule()
     {
+        $Rule = D('Rule')->getTree();
+        echo "<pre>";
+        var_dump($Rule);
         $this->display('auth_rule');
     }
 
