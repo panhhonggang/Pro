@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-10-23 09:57:12
+Date: 2017-10-23 17:31:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,12 +29,13 @@ CREATE TABLE `pub_vendors` (
   `address` varchar(255) DEFAULT NULL COMMENT '供销商地址',
   `leavel` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '供销商级别：默认为“1”级',
   `pid` int(11) NOT NULL DEFAULT '1' COMMENT '经销商上级ID',
-  `addtime` datetime NOT NULL COMMENT '创建时间',
+  `addtime` int(11) NOT NULL COMMENT '创建时间',
+  `idcard` varchar(20) NOT NULL COMMENT '身份证号',
   PRIMARY KEY (`id`),
   KEY `user` (`user`,`name`,`password`,`email`,`phone`,`leavel`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pub_vendors
 -- ----------------------------
-INSERT INTO `pub_vendors` VALUES ('1', 'admin', '炒鸡管理员', '202cb962ac59075b964b07152d234b70', '13777771111', null, null, '1', '0', '0000-00-00 00:00:00');
+INSERT INTO `pub_vendors` VALUES ('1', 'admin', '炒鸡管理员', '202cb962ac59075b964b07152d234b70', '13838381438', null, null, '0', '0', '1508749582', '');
