@@ -1,55 +1,112 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-use Think\Auth;
 
 /**
- * 公共控制器
- * 后台控制器除login外必须继承我
+ * 经销商控制器
+ * 
  * @author 潘宏钢 <619328391@qq.com>
  */
 
-class CommonController extends Controller 
+class VendorsController extends CommonController 
 {
 	/**
-     * 初始化
+     * 经销商列表（本质就是后台用户）
      * @author 潘宏钢 <619328391@qq.com>
      */
-    public function _initialize()
+    public function index()
     {	
-    	// 登录检测
-    	if(empty($_SESSION['adminuser'])) $this->redirect('Login/login');
+        // 根据用户昵称进行搜索
+    	if(!empty($_GET['name'])) $map['name'] = array('like',"%{$_GET['name']}%");
 
-    	// 权限检测
-    	$name = $_SESSION['adminuser']['user'];
-    	$auth = $this->auth($name);
-/*    	if(!$auth) {
-    	    $this->redirect('Index/index');
-        }*/
+        $user = D('vendors');
+        $total = $user->where($map)->count();
+        $page  = new \Think\Page($total,1);
+        $pageButton =$page->show();
 
-    	// 获取用户配置
-//    	$user_config = D('Admin/Config');
-//    	$config = $user_config->getconfig();
-//    	$this->assign('config', $config); // 后台用户配置
+        $userlist = $user->where($map)->limit($page->firstRow.','.$page->listRows)->getAll();
+
+        $this->assign('list',$userlist);
+        $this->assign('button',$pageButton);
+        $this->display();
     }
 
     /**
-     * 调用权限验证方法
-     * @param string $name 登录用户名
-     * @return ture/false
+     * 添加经销商方法
      * @author 潘宏钢 <619328391@qq.com>
      */
-    public function auth($name)
+    public function add()
     {
-        $auth = new Auth();
-        $res = $auth->check($name, 1,1, 'Index/index', 'and' );
-      //  echo "<pre>";
-//        var_dump($res);die;
-    	if ( $res ) {
+        if(IS_POST){
+            $user = D('vendors');
+            $info = $user->create();
 
-    		return ture;
-    	}
+            if($info){
 
-    	return false;
+                $res = $user->add();
+                if ($res) {
+                    $this->success('添加经销商成功啦！！！',U('index'));
+                } else {
+                    $this->error('添加经销商失败啦！');
+                }
+            
+            } else {
+                // getError是在数据创建验证时调用，提示的是验证失败的错误信息
+                $this->error($user->getError());
+            }
+        }else{
+            $this->display();
+        }
+    }
+
+    /**
+     * 编辑经销商方法
+     * @author 潘宏钢 <619328391@qq.com>
+     */
+    public function edit()
+    {
+        if(IS_POST){
+            
+            if ($_POST['password'] == $_POST['repassword']) {
+                $mod = M('vendors');
+                $mod->password = md5($_POST['password']);
+
+                $res = $mod->where("id=".$_POST['id'])->save();
+
+                if ($res) {
+                    $this->success('修改成功啦！','index');
+                }else{
+                    $this->error('修改失败！');
+                }
+            } else {
+                $this->error('两次密码不一样，请重新输入！');
+            }
+
+        } else {
+            $info = D('vendors')->find($id);
+            $this->assign('info',$info);
+            $this->display();
+        }
+    }
+    
+    /**
+     * 删除经销商方法
+     * 需保证其没有下级，没有设备与之挂钩
+     * @author 潘宏钢 <619328391@qq.com>
+     */
+    public function del($id)
+    {
+        $userinfo = M('vendors')->where("id=".$id)->select();
+
+        if ($userinfo[0]['leavel'] == 0 ) {
+            $this->error('不能删除超级管理员！');
+        }else{
+            $res = D('vendors')->delete($id);
+            if($res){
+                $this->success('删除成功',U('index'));
+            }else{
+                $this->error('删除失败');
+            }
+        }
     }
 }

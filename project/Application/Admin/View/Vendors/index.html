@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>table</title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/bootstrap.min.css">
+	<script src="__PUBLIC__/Admin/js/jquery-1.7.2.js" ></script>
+	<script src="__PUBLIC__/Admin/js/bootstrap.js"></script>
+</head>
+<body>
+	<div class="tabbable" style="width: 97%; margin: 0 auto;">
+		<div class="input-group col-md-3 pull-right" style="margin:20px; margin-right: 0">  
+        <form action="__URL__/index" method="get">
+	       	<input type="text" class="form-control" name="name" placeholder="请输入用户昵称" / >  
+            <span class="input-group-btn">  
+               <button class="btn btn-info btn-search">查找</button>  
+            </span>  
+        </form>
+		</div>
+		<table class="table table-bordered table-hover text-center" >
+			<thead class="h4 ">
+				<tr class="danger">
+					<td>ID</td>
+					<td>用户名</td>
+					<td>昵称</td>
+					<td>手机号码</td>
+					<td>邮箱</td>
+					<td>用户地址</td>
+					<td>管理权限</td>
+					<td>上级id</td>
+                    <td>添加时间</td>
+					<td>操作</td>
+				</tr>
+			</thead>
+			<tbody>
+				<notempty name="list">
+                        <foreach name="list" item="vo" key="key">
+                        <tr>
+                            <td>{{$key+1}}</td>
+                            <td>{{$vo.user}}</td>
+                            <td>{{$vo.name}}</td>
+                            <td>{{$vo.phone}}</td>
+                            <td>{{$vo.email}}</td>
+                            <td>{{$vo.address}}</td>
+                            <td>{{$vo.leavel}}</td>
+                            <td>{{$vo.pid}}</td>
+                            <td>{{$vo.addtime}}</td>
+                            <td>
+                                <if condition="$Think.session.adminuser.leavel eq 0">
+                                    <a href="">分配角色</a>
+                                    <a href="__URL__/edit/id/{$vo.id}">修改信息</a>
+                                    <a href="__URL__/del/id/{$vo.id}">删除</a>
+                                <else />
+                                    <span>对不起，您无权操作！！！</span>
+                                </if>
+                            </td>
+                        </tr>
+                        </foreach>
+                    <else />
+                        <tr>
+                            <td colspan="10">查无数据</td>
+                        </tr>
+                    </notempty>
+			</tbody>
+		</table>
+	</div>
+    <!-- 上下页，请加样式 -->
+    <div class="">
+        <ul>
+            {{$button}}
+        </ul>
+    </div>
+</body>
+</html>
