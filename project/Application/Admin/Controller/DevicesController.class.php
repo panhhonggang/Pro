@@ -16,7 +16,10 @@ class DevicesController extends Controller
     public function devicesList()
     {
         $device = D('Devices');
-        $deviceList = "Hello";
+
+        $user_id = $_SESSION['adminuser']['id'];
+
+        $deviceList = $device->getDevicesInfo($user_id);
         $this->assign('deviceList', $deviceList);
         $this->display('devicesList');
     }
@@ -36,12 +39,14 @@ class DevicesController extends Controller
     {
         $devices = D('Devices');
         $code = I(get.code_id);
-        /*if( empty($code) || strlen($code) != 16 ){
-            $this->error('设备码输入错误', 'devicesList', 0);
-        }*/
         if( !$devices->create( $code )){
             exit( $devices->getError() );
         }
+        if(!$devices->add_device()){
+            $this->error('添加失败', 'show_add_device');
+        }
+
+        $this->success('添加成功', 'show_add_device');
 
     }
 }
