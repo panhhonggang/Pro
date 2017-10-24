@@ -113,4 +113,27 @@ class VendorsController extends CommonController
 
         }
     }
+
+    /**
+     * 设备绑定经销商方法
+     * 
+     * @author 潘宏钢 <619328391@qq.com>
+     */
+    public function devices_add()
+    {
+        if (IS_POST) {
+            dump($_POST);                    
+        }else{
+            // 获取经销商信息
+            $user = D('vendors')->getAll();
+            // 获取设备信息
+            $devices = M('devices')->select();
+            
+            $this->assign('user',$user);
+            $this->assign('devices',$devices);
+            $this->display();
+        }
+
+    }
+
 }
