@@ -13,7 +13,7 @@
                  	<option value="{{$vo.id}}">{{$vo.name}}</option>
                 </foreach>
             <else />
-            	<option value="false">查无数据</option>
+            	<option value="0">查无数据</option>
             </notempty>
 		</select>
 
@@ -24,9 +24,10 @@
                  	<option value="{{$vv.id}}">{{$vv.device_code}}</option>
                 </foreach>
             <else />
-            	<option value="false">查无数据</option>
+            	<option value="0">查无数据</option>
             </notempty>
 		</select>
+		<input type="submit" value="马上绑定">
 	</form>
 </body>
 </html>

@@ -122,13 +122,31 @@ class VendorsController extends CommonController
     public function devices_add()
     {
         if (IS_POST) {
-            dump($_POST);                    
+            
+            if ($_POST['did']) {
+                $arr = array(
+                    'vid' => I('vid'),
+                    'did' => I('did'),
+                    'operator' => $_SESSION['adminuser']['name'],
+                    'addtime' => time(),
+                );
+                $binding = M('binding');
+                // 添加
+                if ($binding->add($arr)) {
+                    $this->success('添加成功',U('bindinglist'));
+                }else{
+                    $this->error('添加失败啦');
+                }
+
+            }else{
+                $this->error('设备不存在！请在设备管理中添加设备后尝试！正在为您跳转至设备管理',U('Devices/devicesList'));
+            }                    
         }else{
             // 获取经销商信息
             $user = D('vendors')->getAll();
             // 获取设备信息
             $devices = M('devices')->select();
-            
+
             $this->assign('user',$user);
             $this->assign('devices',$devices);
             $this->display();
