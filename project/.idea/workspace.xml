@@ -26,8 +26,8 @@
       <file leaf-file-name="DevicesModel.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Application/Admin/Model/DevicesModel.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="27" column="23" lean-forward="true" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+            <state relative-caret-position="650">
+              <caret line="26" column="8" lean-forward="true" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -207,12 +207,12 @@
       <workItem from="1508547485029" duration="19037000" />
       <workItem from="1508719024946" duration="9693000" />
       <workItem from="1508806106694" duration="6634000" />
-      <workItem from="1508814234679" duration="11394000" />
+      <workItem from="1508814234679" duration="11958000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70029000" />
+    <option name="totallyTimeSpent" value="70593000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="26" width="1936" height="1062" extended-state="6" />
@@ -552,14 +552,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/VendorsController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="42" column="25" lean-forward="false" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Admin/Model/VendorsModel.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
@@ -596,10 +588,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/VendorsController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="42" column="25" lean-forward="false" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Admin/Model/DevicesModel.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="27" column="23" lean-forward="true" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+        <state relative-caret-position="650">
+          <caret line="26" column="8" lean-forward="true" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
           <folding />
         </state>
       </provider>

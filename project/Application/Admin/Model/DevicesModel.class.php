@@ -24,9 +24,7 @@ class DevicesModel extends Model
 
     public function getDevicesInfo($user_id)
     {
-        $this->where(
-            'user_id='{}
-        )->getField();
+        
     }
 
     // 插入数据库
