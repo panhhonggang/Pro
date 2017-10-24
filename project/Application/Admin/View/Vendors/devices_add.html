@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>绑定设备</title>
+</head>
+<body>
+	<form action="__URL__/devices_add" method="post">
+		请选择经销商：
+		<select name="vid" id="">
+			<notempty name="user">
+                <foreach name="user" item="vo" key="key">
+                 	<option value="{{$vo.id}}">{{$vo.name}}</option>
+                </foreach>
+            <else />
+            	<option value="false">查无数据</option>
+            </notempty>
+		</select>
+
+		请选择设备：
+		<select name="did" id="">
+			<notempty name="devices">
+                <foreach name="devices" item="vv">
+                 	<option value="{{$vv.id}}">{{$vv.device_code}}</option>
+                </foreach>
+            <else />
+            	<option value="false">查无数据</option>
+            </notempty>
+		</select>
+	</form>
+</body>
+</html>
