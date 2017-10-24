@@ -19,23 +19,21 @@ class DevicesModel extends Model
     // 自动完成
     protected $_auto = array(
         array('device_statu', '1'),
-        array('created_at', 'getNowTime', 1, 'callback'),
+        array('created_at', 'time', 1, 'function'),
     );
 
     public function getDevicesInfo($user_id)
     {
-        
+        // 查询设备
+        $bindding = M('binding');
+        $bindding->where("{user_id}=". function(){
+            
+        })->select();
     }
 
     // 插入数据库
     public function add_device($code)
     {
         return $this->add($data);
-    }
-
-    // 获取当前时间
-    public function getNowTime()
-    {
-        return date('Y-m-s H:i:s', time());
     }
 }
