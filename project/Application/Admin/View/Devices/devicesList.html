@@ -5,9 +5,72 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/bootstrap.min.css">
+	<script src="__PUBLIC__/Admin/js/jquery-1.7.2.js" ></script>
+	<script src="__PUBLIC__/Admin/js/bootstrap.js"></script>
+    <style>
+    .pagination ul div a {
+            margin-left: 0;
+            background-color: #fff;
+            border:1px solid #ccc;
+            padding: 6px 12px;
+            
+        }
+    .pagination  .current, .pagination  .active  a:hover, .pagination  .active  span:hover, .pagination  .active  a:focus, .pagination  .active  span:focus {
+            z-index: 2;
+            color: #ffffff;
+            cursor: default;
+            background-color: #428bca;
+            border-color: #ccc;
+            padding: 7px 12px;
+    }
+    </style>
 </head>
 <body>
-
+	<div class="tabbable" style="width: 97%; margin: 0 auto;">
+        <form action="" method="" class="input-group col-md-3 pull-right" style="margin:20px; margin-right: 0">
+	       	<input type="text" class="form-control" name="name" placeholder="请输入用户昵称" / >  
+            <span class="input-group-btn">  
+               <button class="btn btn-info btn-search">查找</button>
+            </span>  
+        </form>
+		<table class="table table-bordered table-hover text-center" >
+			<thead class="h4 ">
+				<tr class="danger">
+					<td>ID</td>
+					<td>编号</td>
+					<td>状态</td>
+					<td>ph值</td>
+					<td>滤芯1</td>
+					<td>滤芯2</td>
+					<td>滤芯3</td>
+					<td>滤芯4</td>
+                    <td>滤芯5</td>
+					<td>标题10</td>
+				</tr>
+			</thead>
+			<tbody>
+                <tr>
+                    <td>563</td>
+                    <td>52425</td>
+                    <td>开启</td>
+                    <td>7.0</td>
+                    <td>42%</td>
+                    <td>42%</td>
+                    <td>42%</td>
+                    <td>42%</td>
+                    <td>42%</td>
+                    <td>标题10</td>
+                </tr>
+			</tbody>
+		</table>
+        <!-- 上下页，请加样式 -->
+        <div class="pagination pagination-lg pull-center">
+            <ul>
+                
+            </ul>
+        </div>
+	</div>
+    
 </body>
 </html>
