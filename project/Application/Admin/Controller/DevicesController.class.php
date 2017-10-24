@@ -38,15 +38,13 @@ class DevicesController extends Controller
     public function add_device()
     {
         $devices = D('Devices');
-        $code = I(get.code_id);
-        if( !$devices->create( $code )){
-            exit( $devices->getError() );
+        $code = I('device_code');
+        if(!$devices->create()){
+            $this->error($devices->getError(), 'show_add_device');
         }
-        if(!$devices->add_device()){
+        if(!$devices->add_device($code)){
             $this->error('添加失败', 'show_add_device');
         }
-
-        $this->success('添加成功', 'show_add_device');
-
+        $this->success('添加成功', 'show_add_device', 100);
     }
 }

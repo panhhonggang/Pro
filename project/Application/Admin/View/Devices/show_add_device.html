@@ -38,11 +38,22 @@
 		form div button{
 			width: 90px;
 		}
+
 	</style>
 </head>
 <body>
-	<form class="tabbable table-bordered" action="" method="">
-		<div>设备编码：<input type="text" name="" placeholder="请输入设备编码"><button style="vertical-align:top;" class="btn">确认</button></div>
+	<div class="breadcrumb">
+		<h3>
+			<span>设备管理</span>
+			>>
+			<span>设备添加入库</span>
+		</h3>
+	</div>
+	<form class="tabbable table-bordered" action="__URL__/add_device" method="post">
+		<div>设备编码：
+			<input type="text" name="device_code" placeholder="请输入设备编码">
+			<button style="vertical-align:top;" class="btn">确认</button>
+		</div>
 	</form>
 </body>
 </html>
