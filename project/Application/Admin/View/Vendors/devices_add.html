@@ -6,44 +6,55 @@
 	<script src="__PUBLIC__/Admin/js/jquery-1.7.2.js" ></script>
 	<script src="__PUBLIC__/Admin/js/bootstrap.js"></script>
 	<style>
-		form{width:60%;margin: 100px auto;border: 1px #ccc solid}
+		form{width:70%;margin: 100px auto;font-size: 16px;font-family: "微软雅黑";}
+		.btn{
+			margin-top: 100px;
+			margin-bottom: 20px;
+			padding:10px 30px;
+		}
+		table tr td{
+			background: #F3F3F4;
+		}
+		select{
+			width: 200px;
+		}
 	</style>
 	<title>绑定设备</title>
 </head>
 <body>
 	<form action="__URL__/devices_add" method="post">
-		<table class="table ">
+		<table class="table">
 			<tbody>
 				<tr>
-					<td>请选择经销商：</td>
-					<td>
-						<select name="vid" id="">
+					<td class="text-center" style="border-width: 0;height: 70px;
+			padding-top: 22px;">
+						请选择经销商：
+						<select name="vid" id="" class="table-bordered">
 							<notempty name="user">
 				                <foreach name="user" item="vo" key="key">
 				                 	<option value="{{$vo.id}}">{{$vo.name}}</option>
 				                </foreach>
-				            <else />
+				            	<else />
 				            	<option value="0">查无数据</option>
 				            </notempty>
 						</select>
 					</td>
-				</tr>
-				<tr>
-					<td>请选择设备：</td>
-					<td>
-						<select name="did" id="">
+					<td class="text-center" style="border-width: 0;height: 70px;
+			padding-top: 22px;">
+						请选择设备：
+						<select name="did" id="" class="table-bordered">
 							<notempty name="devices">
 				                <foreach name="devices" item="vv">
 				                 	<option value="{{$vv.id}}">{{$vv.device_code}}</option>
 				                </foreach>
-				            <else />
+				            	<else />
 				            	<option value="0">查无数据</option>
 				            </notempty>
 						</select>
 					</td>
 				</tr>
 				<tr >
-					<td  colspan="4 " class="text-center"><input type="submit" value="马上绑定"></td>
+					<td colspan="2" class="text-center" style="border-width: 0;"><input class="btn btn-primary" type="submit" value="马上绑定"></td>
 				</tr>
 			</tbody>
 		</table>
