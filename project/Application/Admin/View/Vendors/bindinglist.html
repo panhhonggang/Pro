@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>table</title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/bootstrap.min.css">
+	<script src="__PUBLIC__/Admin/js/jquery-1.7.2.js" ></script>
+	<script src="__PUBLIC__/Admin/js/bootstrap.js"></script>
+    <style>
+    .pagination ul div a {
+            margin-left: 0;
+            background-color: #fff;
+            border:1px solid #ccc;
+            padding: 6px 12px;
+            
+        }
+    .pagination  .current, .pagination  .active  a:hover, .pagination  .active  span:hover, .pagination  .active  a:focus, .pagination  .active  span:focus {
+            z-index: 2;
+            color: #ffffff;
+            cursor: default;
+            background-color: #428bca;
+            border-color: #ccc;
+            padding: 7px 12px;
+    }
+    </style>
+</head>
+<body>
+	<div class="tabbable" style="width: 97%; margin: 0 auto;">
+        <form action="__URL__/bindinglist" method="get" class="input-group col-md-3 pull-right" style="margin:20px; margin-right: 0">
+	       	<input type="text" class="form-control" name="name" placeholder="请输入经销商名" / >  
+            <span class="input-group-btn">  
+               <button class="btn btn-info btn-search">查找</button>  
+            </span> 
+        </form>
+		<table class="table table-bordered table-hover text-center" >
+			<thead class="h4 ">
+				<tr class="danger">
+					<td>绑定编号</td>
+					<td>经销商ID</td>
+					<td>设备ID</td>
+					<td>经销商名</td>
+					<td>经销商电话</td>
+					<td>设备编码</td>
+					<td>执行绑定人</td>
+					<td>绑定时间</td>
+					<td>操作</td>
+				</tr>
+			</thead>
+			<tbody>
+				<notempty name="list">
+                        <foreach name="list" item="vo" key="key">
+                        <tr>
+                            <td>{{$key+1}}</td>
+                            <td>{{$vo.vid}}</td>
+                            <td>{{$vo.did}}</td>
+                            <td>{{$vo.name}}</td>
+                            <td>{{$vo.phone}}</td>
+                            <td>{{$vo.device_code}}</td>
+                            <td>{{$vo.operator}}</td>
+                            <td>{{$vo.addtime|date='Y-m-d H:i:s',###}}</td>
+                            <td>
+                                <if condition="$Think.session.adminuser.leavel eq 0">
+                                    <!-- <a href="">分配角色</a> -->
+                                    <!-- <a href="__URL__/edit/id/{$vo.id}">修改信息</a> -->
+                                    <a href="__URL__/bindingdel/id/{$vo.id}">解除绑定</a>
+                                <else />
+                                    <span>对不起，您无权操作！！！</span>
+                                </if>
+                            </td>
+                        </tr>
+                        </foreach>
+                    <else />
+                        <tr>
+                            <td colspan="10">查无数据</td>
+                        </tr>
+                    </notempty>
+			</tbody>
+		</table>
+        <!-- 上下页，请加样式 -->
+        <div class="pagination pagination-lg pull-right">
+            <ul>
+                {{$button}}
+            </ul>
+        </div>
+	</div>
+    
+</body>
+</html>

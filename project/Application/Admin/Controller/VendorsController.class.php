@@ -122,7 +122,7 @@ class VendorsController extends CommonController
     public function devices_add()
     {
         if (IS_POST) {
-            
+
             if ($_POST['did']) {
                 $arr = array(
                     'vid' => I('vid'),
@@ -152,6 +152,60 @@ class VendorsController extends CommonController
             $this->display();
         }
 
+    }
+
+    /**
+     * 设备绑定经销商列表
+     * 
+     * @author 潘宏钢 <619328391@qq.com>
+     */
+    public function bindinglist()
+    {
+       // 根据用户昵称进行搜索
+        if(!empty($_GET['name'])) $map['name'] = array('like',"%{$_GET['name']}%");
+
+        $binding = M('binding');
+        
+        $total =$binding->where($map)
+                   ->join('pub_vendors ON pub_binding.vid = pub_vendors.id')
+                   ->join('pub_devices ON pub_binding.did = pub_devices.id')
+                   ->field('pub_binding.*,pub_vendors.name,pub_vendors.phone,pub_devices.device_code')
+                   ->count();
+        $page  = new \Think\Page($total,8);
+        $pageButton =$page->show();
+
+        $bindinglist = $binding->where($map)
+                                ->limit($page->firstRow.','.$page->listRows)
+                                ->join('pub_vendors ON pub_binding.vid = pub_vendors.id')
+                                ->join('pub_devices ON pub_binding.did = pub_devices.id')
+                                ->field('pub_binding.*,pub_vendors.name,pub_vendors.phone,pub_devices.device_code')
+                                ->select();
+
+        $this->assign('list',$bindinglist);
+        $this->assign('button',$pageButton);
+        $this->display(); 
+    }
+
+    /**
+     * 解除绑定方法
+     * 
+     * @author 潘宏钢 <619328391@qq.com>
+     */
+    public function bindingdel($id)
+    {
+        
+        if ($_SESSION['adminuser']['leavel'] == 0) {
+            // echo 1;die;
+            $res = D('binding')->delete($id);
+            if($res){
+                $this->success('删除成功',U('bindinglist'));
+            }else{
+                $this->error('删除失败');
+            }
+
+        }else{
+           $this->error('对不起，您没有权限解除绑定！',U('bindinglist'));
+        }
     }
 
 }
