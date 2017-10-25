@@ -20,6 +20,7 @@ class DevicesController extends Controller
         $user_id = $_SESSION['adminuser']['id'];
 
         $deviceList = $device->getDevicesInfo($user_id);
+        dump($deviceList);die;
         $this->assign('deviceList', $deviceList);
         $this->display('devicesList');
     }
@@ -45,6 +46,6 @@ class DevicesController extends Controller
         if(!$devices->add_device($code)){
             $this->error('添加失败', 'show_add_device');
         }
-        $this->success('添加成功', 'show_add_device', 100);
+        $this->success('添加成功', 'show_add_device');
     }
 }

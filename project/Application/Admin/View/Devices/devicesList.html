@@ -57,18 +57,18 @@
 				</tr>
 			</thead>
 			<tbody>
-                <tr>
-                    <td>563</td>
-                    <td>52425</td>
-                    <td>开启</td>
-                    <td>7.0</td>
-                    <td>42%</td>
-                    <td>42%</td>
-                    <td>42%</td>
-                    <td>42%</td>
-                    <td>42%</td>
-                    <td>标题10</td>
-                </tr>
+                <volist name="deviceList" id="device">
+                    <tr>
+                        <td>{{$device.id}}</td>
+                        <td>{{$device.device_code}}</td>
+                        <td>{{$device.device_statu}}</td>
+                        <td>{{$device.phvalue}}</td>
+                        <for start="1" end="count($device.filters)">
+                            <td>{{$device.filters[$i]}}%</td>
+                        </for>
+                        <td>{{$device.updated_at}}</td>
+                    </tr>
+                </volist>
 			</tbody>
 		</table>
         <!-- 上下页，请加样式 -->
